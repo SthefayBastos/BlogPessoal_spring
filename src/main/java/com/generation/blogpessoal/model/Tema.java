@@ -22,7 +22,7 @@ public class Tema {
 		private Long id;
 		
 		@NotNull (message = "A Descrição é obrigatória")
-		private String descrição;
+		private String descricao;
 		
 		@OneToMany (fetch = FetchType.LAZY, mappedBy = "tema" , cascade = CascadeType.REMOVE)
 		@JsonIgnoreProperties("tema")
@@ -36,12 +36,12 @@ public class Tema {
 			this.id = id;
 		}
 
-		public String getDescrição() {
-			return descrição;
+		public String getDescricao() {
+			return descricao;
 		}
 
-		public void setDescrição(String descrição) {
-			this.descrição = descrição;
+		public void setDescrição(String descricao) {
+			this.descricao = descricao;
 		}
 
 		public List<Postagem> getPostagem() {
