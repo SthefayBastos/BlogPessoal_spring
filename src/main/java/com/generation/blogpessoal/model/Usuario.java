@@ -1,25 +1,23 @@
 
 package com.generation.blogpessoal.model;
 
-	import java.time.LocalDate;
 	import java.util.List;
 
-	import com.fasterxml.jackson.annotation.JsonFormat;
-	import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-	import jakarta.persistence.CascadeType;
-	import jakarta.persistence.Column;
-	import jakarta.persistence.Entity;
-	import jakarta.persistence.FetchType;
-	import jakarta.persistence.GeneratedValue;
-	import jakarta.persistence.GenerationType;
-	import jakarta.persistence.Id;
-	import jakarta.persistence.OneToMany;
-	import jakarta.persistence.Table;
-	import jakarta.validation.constraints.Email;
-	import jakarta.validation.constraints.NotBlank;
-	import jakarta.validation.constraints.NotNull;
-	import jakarta.validation.constraints.Size;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 	@Entity
 	@Table(name = "tb_usuarios")
@@ -32,7 +30,8 @@ package com.generation.blogpessoal.model;
 
 		@NotNull(message = "O Atributo Nome é Obrigatório!")
 		private String nome;
-
+		
+		@Schema(example = "email@email.com.br")
 		@NotNull(message = "O Atributo Usuário é Obrigatório!")
 		@Email(message = "O Atributo Usuário deve ser um email válido!")
 		private String usuario;
@@ -48,18 +47,21 @@ package com.generation.blogpessoal.model;
 		@JsonIgnoreProperties("usuario")
 		private List<Postagem> postagem;
 
-		@NotNull(message = "O Atributo Data de nascimento é Obrigatório!")
-		@Column(name = "data_nascimento")
-		@JsonFormat(pattern = "dd/MM/yyyy")
-		private LocalDate dataNascimento;
+		
 
-		public LocalDate getDataNascimento() {
-			return dataNascimento;
+		public Usuario(Long id, String nome, String usuario, String senha, String foto) {
+			
+			this.id = id;
+			this.nome = nome;
+			this.usuario = usuario;
+			this.senha = senha;
+			this.foto = foto;
+			
 		}
 
-		public void setDataNascimento(LocalDate dataNascimento) {
-			this.dataNascimento = dataNascimento;
-		}
+		public Usuario() {}
+
+		
 
 		public Long getId() {
 			return this.id;
